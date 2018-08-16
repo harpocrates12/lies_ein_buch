@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta></meta>
+        <title>Lies Ein Buch</title>
+        <link rel="stylesheet" href="static/styles.css"></link>
+    </head>
+    <body>
+        <div class="container">
+            <table>
+                <tr>
+                    <td class="title">
+                        Das steinerne Herz
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                    <td class="title">
+                        Der kleine Prinz
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="image">
+                        <img src="static/images/steinerneherz.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Das steinerne Herz"></div>
+                    </td>
+                    <td class="image">
+                        <img src="static/images/derkleineprinz.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Der kleine Prinz"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        Siddhartha
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                    <td class="title">
+                        Feuchtgebiete
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="image">
+                        <img src="static/images/siddharta.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Siddhartha"></div>
+                    </td>
+                    <td class="image">
+                        <img src="static/images/feuchtgebiete.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Feuchtgebiete"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        Der goldene Handschuh
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                    <td class="title">
+                        Harry Potter und der Stein der Weisen
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="image">
+                        <img src="static/images/goldenerhandschuh.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Der goldene Handschuh"></div>
+                    </td>
+                    <td class="image">
+                        <img src="static/images/Harry Potter.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Harry Potter und der Stein der Weisen"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        Die unendliche Geschichte
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                    <td class="title">
+                        Fifty Shades of Grey
+                    </td>
+                    <td>
+                        <!--  -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="image">
+                        <img src="static/images/rsz_unendlichegeschichte.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Die unendliche Geschichte"></div>
+                    </td>
+                    <td class="image">
+                        <img src="static/images/50shades.png">
+                    </td>
+                    <td class="items">
+                        <div class="book" value="Fifty Shades of Grey"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	     crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	     crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	     crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $(function(){
+                var books = {
+                    Das_steinerne_Herz: [3660000, '01:01'],
+                    Der_kleine_Prinz: [8580000, '02:23'],
+                    Siddhartha: [15720000, '04:22'],
+                    Feuchtgebiete: [20100000, '05:35'],
+                    Der_goldene_Handschuh: [22740000, '06:19'],
+                    Harry_Potter_und_der_Stein_der_Weisen: [35520000, '09:52'],
+                    Die_unendliche_Geschichte: [54360000, '15:06'],
+                    Fifty_Shades_of_Grey: [71280000, '19:48']
+                };
+                var startToday = new Date(new Date().toLocaleDateString().split('/').join(' ')).getTime();
+                var endToday = (startToday + (60 * 60 * 24 * 1000));
+
+                var el = document.getElementsByClassName('book');
+
+                setInterval(function(){
+                    var nowInSeconds = new Date().getTime();
+
+                    for (i = 0; i < el.length; i++){
+                        var avgTime = books[el[i].getAttribute("value").split(" ").join('_')][0];
+                        var latestStart = (endToday - avgTime);
+                        var remainingUntilDeadline = (latestStart - nowInSeconds);
+                        var formattedDeadline = new Date(Math.round(remainingUntilDeadline)).toISOString().substr(11,8);
+
+                        el[i].innerHTML = getText(remainingUntilDeadline, formattedDeadline)
+                    };
+                }, 1000)
+
+                function getText(deadline, formattedDeadline){
+                    if (deadline > 0){
+                        return "In spätestens " + 
+                        "<span class='deadline'>" + formattedDeadline + "</span>" + 
+                        " Stunden musst du anfangen " + 
+                        "um heute noch fertig zu werden!"
+                    }
+                    else {
+                        return "Das wirst du heute leider nicht mehr schaffen..."
+                    };
+                };
+            });
+        </script>
+    </body>
+</html>
