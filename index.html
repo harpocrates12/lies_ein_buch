@@ -145,15 +145,11 @@
                 </div>
             </div>
         </div>
-
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-	     crossorigin="anonymous"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DzdivAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-	     crossorigin="anonymous"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>        
         <script type="text/javascript">
             $(function(){
+                setInterval(function(){
                 var books = {
                     Das_steinerne_Herz: [3660000, '01:01'],
                     Der_kleine_Prinz: [8580000, '02:23'],
@@ -164,24 +160,35 @@
                     Die_unendliche_Geschichte: [54360000, '15:06'],
                     Fifty_Shades_of_Grey: [71280000, '19:48']
                 };
+
                 var startToday = new Date(new Date().toLocaleDateString().split('/').join(' ')).getTime();
-                var endToday = (startToday + (60 * 60 * 24 * 1000));
-
+                var endToday = startToday + (60 * 60 * 24 * 1000)
+                
                 var el = document.getElementsByClassName('book');
-
-                setInterval(function(){
                     var nowInSeconds = new Date().getTime();
 
                     for (i = 0; i < el.length; i++){
                         var avgTime = books[el[i].getAttribute("value").split(" ").join('_')][0];
-                        var latestStart = (endToday - avgTime);
-                        var remainingUntilDeadline = (latestStart - nowInSeconds);
-                        var formattedDeadline = new Date(Math.round(remainingUntilDeadline)).toISOString().substr(11,8);
+                        var latestStart = endToday - avgTime;
+                        var remainingUntilDeadline = latestStart - nowInSeconds;
+                        var formattedDeadline = msToTime(Math.round(remainingUntilDeadline));
 
                         el[i].innerHTML = getText(remainingUntilDeadline, formattedDeadline)
                     };
                 }, 1000)
 
+                function msToTime(duration) {
+                    seconds = parseInt((duration / 1000) % 60),
+                    minutes = parseInt((duration / (1000 * 60)) % 60),
+                    hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+                    hours = (hours < 10) ? "0" + hours : hours;
+                    minutes = (minutes < 10) ? "0" + minutes : minutes;
+                    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                    return hours + ":" + minutes + ":" + seconds;
+                }
+                
                 function getText(deadline, formattedDeadline){
                     if (deadline > 0){
                         return "In spätestens " + "<span class='deadline'>" + formattedDeadline + "</span>" + " Stunden musst du anfangen um heute noch fertig zu werden!"
