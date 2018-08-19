@@ -161,7 +161,11 @@
                     Fifty_Shades_of_Grey: [71280000, '19:48']
                 };
 
-                var startToday = new Date(new Date().toLocaleDateString().split('/').join(' ')).getTime();
+                var day = new Date().toString().split(' ')[2]
+                var month = new Date().toString().split(' ')[1]
+                var year = new Date().toString().split(' ')[3]
+                var startToday = new Date(month + " " + day + ", " + year).getTime();
+
                 var endToday = startToday + (60 * 60 * 24 * 1000)
                 
                 var el = document.getElementsByClassName('book');
