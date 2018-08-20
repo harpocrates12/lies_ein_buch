@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Lies Ein Buch</title>
         <link rel="stylesheet" href="static/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </head>
     <body>
         <h1>Lies Ein Buch Tag 2018</h1>
@@ -15,7 +16,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/das_steinerne_herz.png">
+                        <img src="static/images/das_steinerne_herz.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 1 Stunde und 1 Minute für "Das steinerne Herz" von E.T.A. Hoffmann.
@@ -32,7 +33,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/der_kleine_prinz.png">
+                        <img src="static/images/der_kleine_prinz.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 2 Stunden und 23 Minuten für "Der kleine Prinz" von Antoine de Saint-Exupéry.
@@ -49,7 +50,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/siddharta.png">
+                        <img src="static/images/siddharta.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 4 Stunden und 22 Minuten für "Siddhartha" von Hermann Hesse.
@@ -66,7 +67,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/feuchtgebiete.png">
+                        <img src="static/images/feuchtgebiete.png" style="height: 65px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 5 Stunden und 35 Minuten für "Feuchtgebiete" von Charlotte Roche.
@@ -83,7 +84,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/der_goldene_handschuh.png">
+                        <img src="static/images/der_goldene_handschuh.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 6 Stunden und 19 Minuten für "Der goldene Handschuh" von Heinz Strunk.
@@ -100,7 +101,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/harry_potter.png">
+                        <img src="static/images/harry_potter.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 9 Stunden und 52 Minuten für "Harry Potter und der Stein der Weisen" von J.K. Rowling.
@@ -117,7 +118,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/die_unendliche_geschichte.png">
+                        <img src="static/images/die_unendliche_geschichte.png" style="height: 65px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 15 Stunden und 6 Minuten für "Die unendliche Geschichte" von Michael Ende.
@@ -134,7 +135,7 @@
                 </div>
                 <div class="tooltip">
                     <div class="image">
-                        <img src="static/images/fifty_shades_of_grey.png">
+                        <img src="static/images/fifty_shades_of_grey.png" style="height: 85px;">
                     </div>
                     <span class="tooltiptext">
                         Ein durchschnittlicher Leser benötigt 19 Stunden und 48 Minuten für "Fifty Shades of Grey" von E.L. James.
@@ -144,6 +145,23 @@
                     <div class="book" value="Fifty Shades of Grey"></div>
                 </div>
             </div>
+
+            <div class="grid-item">
+                <div class="title">
+                    Die Bibel
+                </div>
+                <div class="tooltip">
+                    <div class="image">
+                        <img src="static/images/bibel.png" style="height: 85px;">
+                    </div>
+                    <span class="tooltiptext" style="width: 125px;">
+                        Dachtest du ernsthaft, dass man die Bibel an einem Tag lesen könnte?! Gott hat 7 Tage gebraucht, um die Erde zu schaffen...
+                    </span>
+                </div>
+                <div class="items">
+                    <div class="book" value="Die Bibel"></div>
+                </div>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
         crossorigin="anonymous"></script>        
@@ -151,14 +169,15 @@
             $(function(){
                 setInterval(function(){
                 var books = {
-                    Das_steinerne_Herz: [3660000, '01:01'],
-                    Der_kleine_Prinz: [8580000, '02:23'],
-                    Siddhartha: [15720000, '04:22'],
-                    Feuchtgebiete: [20100000, '05:35'],
-                    Der_goldene_Handschuh: [22740000, '06:19'],
-                    Harry_Potter_und_der_Stein_der_Weisen: [35520000, '09:52'],
-                    Die_unendliche_Geschichte: [54360000, '15:06'],
-                    Fifty_Shades_of_Grey: [71280000, '19:48']
+                    Das_steinerne_Herz: [3660000],
+                    Der_kleine_Prinz: [8580000],
+                    Siddhartha: [15720000],
+                    Feuchtgebiete: [20100000],
+                    Der_goldene_Handschuh: [22740000],
+                    Harry_Potter_und_der_Stein_der_Weisen: [35520000],
+                    Die_unendliche_Geschichte: [54360000],
+                    Fifty_Shades_of_Grey: [71280000],
+                    Die_Bibel: [86400001]
                 };
 
                 var day = new Date().toString().split(' ')[2]
@@ -195,7 +214,7 @@
                 
                 function getText(deadline, formattedDeadline){
                     if (deadline > 0){
-                        return "In spätestens " + "<span class='deadline'>" + formattedDeadline + "</span>" + " Stunden musst du anfangen um heute noch fertig zu werden!"
+                        return "In spätestens " + "<p class='deadline'>" + formattedDeadline + "</p>" + " Stunden musst du anfangen um heute noch fertig zu werden!"
                     }
                     else {
                         return "Das wirst du heute leider nicht mehr schaffen..."
